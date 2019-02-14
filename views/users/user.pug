@@ -1,11 +1,15 @@
+
 h1 User
 
 a(href="/users/create") New
 
-form(action="/user/search",method="GET")
+form(action="/users/search",method="GET")
     input(type="text", name="q")
     button Search
     each user in users
-        li= user.name
+        li
+            span= user.name
+            span &nbsp;
+            a(href='/users/'+user.id) View
         
     
