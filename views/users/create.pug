@@ -2,11 +2,17 @@ extends ./layouts/general.pug
 
 block content
     
+    if errors 
+        each error in errors 
+            .alert.alert-danger= error
 
     h1 Create User
 
     form(action="/users/create", method="post")
-        label Name 
-        input(type="text", name="name")
-
-        button Create
+        .form-group
+            label(for="name") Name 
+            input#name.form-control(type="text", name="name", value= values ? values.name:"")
+        .form-group
+            label(for="phone") Phone
+            input#phone.form-control(type="text", name="phone",  value= values ? values.phone:"")
+        button.btn.btn-primary Create
