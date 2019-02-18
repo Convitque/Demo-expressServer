@@ -3,49 +3,20 @@ var router = express.Router();
 
 var db = require('../db');
 const shortid = require('shortid');
+var controllers = require('../controllers/user.controllers') 
 
 module.exports = router;
 
 
-router.get('/', function (req, res) {
-    res.render('users/user', {
-        users: db.get('users').value()
-    })
-});
+router.get('/', controllers.index);
 
 
 
-router.get('/search', function (req, res) {
-    var q = req.query.q;
+router.get('/search', controllers.search)
 
-    var mathedUsers = db.get('users').value().filter(function(user) {
-        return user.name.toLowerCase().indexOf(q.toLowerCase()) !== -1;
-    });
-
-    console.mathedUser;
-    res.render('users/user', {
-        users: mathedUsers
-    })
-})
-
-router.get('/create', function (req, res) {
-    res.render('users/create');
-})
+router.get('/create', controllers.create)
 
 
-router.get('/:id', function (req, res) {
-    var id = req.params.id;
+router.get('/:id', controllers.id)
 
-    var user = db.get('users').find({
-        id: id
-    }).value();
-    res.render('users/view', {
-        user: user
-    })
-})
-
-router.post('/create', function (req, res) {
-    req.body.id = shortid.generate();
-    db.get('users').push(req.body).write();
-    res.redirect('/');
-})
+router.post('/create', controllers.POSTcreate)

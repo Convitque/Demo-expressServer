@@ -1,7 +1,12 @@
-h1 Create User
+extends ./layouts/general.pug
 
-form(action="/users/create", method="post")
-    label Name 
-    input(type="text", name="name")
+block content
+    
 
-    button Create
+    h1 Create User
+
+    form(action="/users/create", method="post")
+        label Name 
+        input(type="text", name="name")
+
+        button Create
