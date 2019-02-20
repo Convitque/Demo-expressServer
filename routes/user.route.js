@@ -12,16 +12,11 @@ module.exports = router;
 
 router.get('/', controllers.index);
 
-
-
 router.get('/search', controllers.search)
 
 router.get('/create', controllers.create)
 
-
 router.get('/:id', controllers.id)
 
-
-
-// res.locals to save a variable in a req,res
 router.post('/create',validate.postCREATE, controllers.POSTcreate)
+
