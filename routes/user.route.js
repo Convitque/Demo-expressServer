@@ -3,6 +3,8 @@ var router = express.Router();
 
 var db = require('../db');
 const shortid = require('shortid');
+
+var validate = require("../validate/user.validate")
 var controllers = require('../controllers/user.controllers') 
 
 module.exports = router;
@@ -19,4 +21,7 @@ router.get('/create', controllers.create)
 
 router.get('/:id', controllers.id)
 
-router.post('/create', controllers.POSTcreate)
+
+
+// res.locals to save a variable in a req,res
+router.post('/create',validate.postCREATE, controllers.POSTcreate)
