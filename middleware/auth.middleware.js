@@ -1,13 +1,20 @@
 module.exports.requireAuth = function (req, res, next) {
- if(!req.cookies.usersID){
-     res.redirect('/auth/login');
-    return;
-    }   
-    var user = db.get('users').find({id: req.cookies.userID}).value();
-
-    if(!user) {
-        res.redirect('/auth/login');
+    
+    if (!req.signedCookies.userID) {
+        res.redirect('auth/login');
         return;
     }
+    console.log('here');
+    var user = db.get('users').find({
+        id: req.signedCookies.userID
+    }).value();
+    
+    
+
+    if (!user) {
+        res.redirect('auth/login');
+        return;
+    }
+    res.locals.user = user;
     next();
 }

@@ -11,7 +11,7 @@ const port = 3000
 const app = express();
 
 
-
+app.use(cookieParser('secret'))
 app.set('view engine', 'pug')
 app.set('views', './views')
 
@@ -27,7 +27,7 @@ app.set('views', './views')
 
 
 app.get('/', function (req, res) {
-    res.render('index');
+    res.render('index.pug');
 });
 
 app.use('/users',middleware.requireAuth,userRoute);
