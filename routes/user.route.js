@@ -1,13 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-var db = require('../db');
-const shortid = require('shortid');
 
-var validate = require("../validate/user.validate")
+var validate = require("../middleware/user.middleware")
 var controllers = require('../controllers/user.controllers') 
 
-module.exports = router;
 
 
 router.get('/', controllers.index);
@@ -20,3 +17,4 @@ router.get('/:id', controllers.id)
 
 router.post('/create',validate.postCREATE, controllers.POSTcreate)
 
+module.exports = router;

@@ -4,7 +4,6 @@ const shortid = require('shortid');
 
 
 module.exports.index = function (req, res) {
-    res.cookie('user-id',51234);
     res.render('users/user', {
         users: db.get('users').value()
     })
